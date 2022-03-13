@@ -1,0 +1,16 @@
+Docker Remove command    
+    docker stop $(docker ps -a -q)
+    docker rm $(docker ps -a -q)
+    docker rmi -f $(docker images -a -q)
+    docker volume rm $(docker volume ls -q)
+    docker network prune -f
+build
+    docker-compose build
+コンテナ立ち上げ
+    docker-compose up
+exec
+    docker exec -it laravel_app bash
+migrate   
+    php artisan config:clear
+    php artisan migrate:install
+    
