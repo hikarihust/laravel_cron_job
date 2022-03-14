@@ -37,6 +37,9 @@ class SendTrafficEmailReport extends Command
      */
     public function handle()
     {
-        //
+
+        $usersCount = \DB::table('users')
+            ->whereRaw('Date(created_at) = CURDATE()')
+            ->count();
     }
 }
