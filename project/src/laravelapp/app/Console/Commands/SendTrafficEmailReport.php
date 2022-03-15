@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
+use DB;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendReport;
 
 class SendTrafficEmailReport extends Command
 {
@@ -11,7 +14,7 @@ class SendTrafficEmailReport extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'sendreport:name';
 
     /**
      * The console command description.
@@ -41,5 +44,7 @@ class SendTrafficEmailReport extends Command
         $usersCount = \DB::table('users')
             ->whereRaw('Date(created_at) = CURDATE()')
             ->count();
+
+            Mail::to('vudinhquangk53@gmail.com')->send(new SendReport($usersCount));
     }
 }
