@@ -37,6 +37,6 @@ class DeleteInactiveUsers extends Command
      */
     public function handle()
     {
-        //
+        \DB::table('users')->where('email_verified_at', '=', null)->delete();
     }
 }
